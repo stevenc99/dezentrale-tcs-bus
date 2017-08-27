@@ -17,10 +17,9 @@ int main() {
 	for (int i = 0; i < sizeof(frame)-1; i++) {
 		int output = frame[i] ^ 0x1;
 		fputc(output, fd);
-#ifdef TEST
 		fflush(fd);
-#endif
-		usleep(2000);
+//		usleep(2000);
+		usleep(1800);
 	}
 
 	fclose(fd);
