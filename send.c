@@ -5,9 +5,7 @@
 #include <unistd.h>
 
 int main() {
-// :XXX: take as a command-line arg
-//	const char frame[] = "0001010110101100101010101";	// door open
-	const char frame[] = "000110101011011011011011001101010100110010101010011";	// door bell
+	const char frame[] = "000101011010110010101010";	// door open
 
 #ifdef TEST
 	FILE *fd = fopen("/dev/fd/1", "ab");
