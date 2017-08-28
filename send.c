@@ -2,15 +2,25 @@
 #include <features.h>
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
-int main() {
-	const char frame[] = "000101011010110010101010";	// door open
+#define GPIO "/sys/devices/virtual/gpio/gpio44/value"
+
+int main(int argc, char *argv[]) {
+	// Door-Open code
+	const char frame[] = "000101011010110010101010";
 
 #ifdef TEST
-	FILE *fd = fopen("/dev/fd/1", "ab");
+// Send output to stderr instead of the real GPIO
+# define fd stderr
 #else
-	FILE *fd = fopen("/sys/devices/virtual/gpio/gpio44/value", "ab");
+	FILE *fd = fopen(GPIO, "ab");
+	if (!fd) {
+		fprintf(stderr, "%s: failed to open '%s':\n", argv[0], GPIO);
+		perror(NULL);
+		exit(1);
+	}
 #endif
 
 	for (unsigned int i = 0; i < sizeof(frame)-1; i++) {
@@ -24,12 +34,8 @@ int main() {
 		usleep(1800);
 	}
 
-#ifdef TEST
-	fputc('\n', fd);
-#else
 	// Put the line back into idle state
-	fputc('0', fd);
-#endif
+	fputs("0\n", fd);
 	fclose(fd);
 	return 0;
 }
