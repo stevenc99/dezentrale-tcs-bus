@@ -26,6 +26,9 @@ int main() {
 
 #ifdef TEST
 	fputc('\n', fd);
+#else
+	// Put the line back into idle state
+	fputc('0', fd);
 #endif
 	fclose(fd);
 	return 0;
