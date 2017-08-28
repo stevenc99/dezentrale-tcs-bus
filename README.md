@@ -1,4 +1,4 @@
-# Tür-Öffner, for the TCS:BUS in dezentrale
+# Türöffner, for the TCS:BUS in dezentrale
 
 Usage:
 
