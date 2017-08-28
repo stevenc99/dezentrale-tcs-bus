@@ -3,5 +3,5 @@
 Usage:
 
     $ make
-    $ ./init.sh	# enables GPIO pin
+    $ ./init.sh		# enables GPIO pin
     $ ./send		# sends Door-Open code
